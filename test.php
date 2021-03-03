@@ -1,29 +1,23 @@
 <?php 
+/** тестовое задание с действиями над комплексными числами 
+ * miam.devsoft@yandex.ru
+ * 03.03.2021
+ **/ 
 include 'ComplexNumber.php';
+include 'outputConsole.php';
+include 'outputBrowser.php';
+$browser=true; //если вывод в браузер - true консоль - false
 $firstNumber = new ComplexNumber(-7,3);
 $secondNumber = new ComplexNumber(2,-4);
-$firstNumber->output();
-echo ' + ';
-echo $secondNumber->output().' = ';
-$firstNumber->add($secondNumber);
-$firstNumber->output();
-echo '<br>'.PHP_EOL;
-$firstNumber->set(-7,3);
-$firstNumber->output();
-$firstNumber->sub($secondNumber);
-$firstNumber->output();
-$firstNumber->set(-7,3);
-$firstNumber->output();
-$firstNumber->mult($secondNumber);
-$firstNumber->output();
-$firstNumber->set(-7,3);
-$firstNumber->output();
-$firstNumber->div($secondNumber);
-$firstNumber->output();
-$firstNumber->set(0,0);
-$firstNumber->output();
-$firstNumber->div($secondNumber);
-$firstNumber->output();
 
+if ($browser) $output = new outputBrowser();
+else $output = new outputConsole();
+
+$output->output($firstNumber, ' + ', $secondNumber, $firstNumber->add($secondNumber));
+$output->output($firstNumber, ' - ', $secondNumber, $firstNumber->sub($secondNumber));
+$output->output($firstNumber, ' * ', $secondNumber, $firstNumber->mult($secondNumber));
+$output->output($firstNumber, ' / ', $secondNumber, $firstNumber->div($secondNumber));
+$secondNumber->set(0,0);
+$output->output($firstNumber, ' / ', $secondNumber, $firstNumber->div($secondNumber));
 ?>
 
